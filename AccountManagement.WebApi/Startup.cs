@@ -25,11 +25,10 @@ namespace AccountManagement.WebApi
 
             var container = BuildContainer();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            ConfigureOAuth(app, container);
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
             app.UseWebApi(config);
-
-            ConfigureOAuth(app, container);
         }
 
         private IContainer BuildContainer()
